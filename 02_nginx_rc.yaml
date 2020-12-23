@@ -1,0 +1,36 @@
+# Numero de versión de api
+apiVersion: v1
+
+# Tipo de fichero a crear
+kind: ReplicationController
+
+# Datos del RC
+metadata:
+
+  # Nombre del RC
+  name: my-nginx
+
+# Especificaciones que queremos que tenga el pod
+spec:
+
+  # Numero de replicas que queremos que se encargue de mantener el RC. Se creara un pod
+  replicas: 1
+
+  # Ahora indicamos todos los pods de los que se va a encargar este RP.
+  # En este caso se encargará de todos los que tengan nginx en el valor app
+  selector:
+    app: nginx
+
+  # Ahora definimos el mismom esquema que tiene un pod y que hemos realizado en el fichero anterior
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports: 
+            - containerPort: 80

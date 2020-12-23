@@ -1,0 +1,26 @@
+# Numero de versión de la api que se quiere utilizar
+apiVersion: v1
+
+# Tipo de fcihero que se va a crear
+kind: Pod
+
+# Los datos propios del pop como el nombre y los labels que tiene asociados
+metadata:
+  name: my-nginx
+
+  # Especificamos que el pod tenga una app que sera nginx
+  labels:
+    app: nginx
+
+# Defininimos las specs del pod
+spec:
+
+  # Aquí se nombran los contenedores que forman parte de este pod. Todos estos serán visibles por localhost
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+  # Ahora indicamos que queremos que ocurra si por x motivo el container deja de estar disponible
+  restartPolicy: Always

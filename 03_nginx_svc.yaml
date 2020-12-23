@@ -1,0 +1,22 @@
+# Numero de version de la api que se quiere utilizar
+apiVersion: v1
+
+# Tipo de fichero que se va a crear
+kind: Service
+
+# Los datos propios del pod como el nombre y el label
+metadata:
+  name: my-nginx-service
+
+# Ahora se define las specs del pod
+spec:
+
+  type: NodePort
+  # Ahora se indican todos los pods que apuntan a este svc.
+  # En este caso se encarga de todos los que tengan el valor nginx en app
+  selector:
+    app: nginx
+  ports:
+
+    # Puerto donde se debe servir el svc
+    - port: 80
